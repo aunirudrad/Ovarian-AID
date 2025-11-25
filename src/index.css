@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom styles */
+:root{
+  --primary: #0f766e;
+  --muted: #6b7280;
+  --accent: #f8f0a6;
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  color: #0f172a;
+}
+
+/* hero */
+.hero {
+  background: linear-gradient(180deg,#f0fbff 0%, #fff 100%);
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+/* classifier card */
+.card {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 24px rgba(15,23,42,0.06);
+  overflow: hidden;
+}
+
+/* big classify button */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  padding: 0.9rem 1.25rem;
+  border-radius: 0.625rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* small muted */
+.muted { color: var(--muted); }
+
+/* preview image */
+.preview-img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  display: block;
+}
+
+/* result pill */
+.result-pred {
+  display:flex;
+  justify-content:space-between;
+  padding: .6rem .75rem;
+  border-radius: .5rem;
+  background: #f8fafc;
+  border: 1px solid #eef2f7;
+  margin-bottom: .5rem;
+}
+
+/* overlay slide-up styles (add to src/index.css) */
+
+/* make the preview wrapper positioned so overlay can be absolute */
+.preview-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+/* overlay panel that slides up from bottom */
+.result-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(100%); /* hidden by default */
+  transition: transform 420ms cubic-bezier(.22,.9,.34,1), opacity 280ms ease;
+  z-index: 30;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.98));
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  box-shadow: 0 -12px 30px rgba(15,23,42,0.08);
+  opacity: 0;
+}
+
+/* visible state: slide up */
+.result-overlay.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* small handle / shadow so user sees it slide */
+.result-handle {
+  width: 44px;
+  height: 4px;
+  background: #e6eef2;
+  border-radius: 999px;
+  margin: 0 auto 0.55rem;
+}
+
+/* ensure preview image stays visible behind overlay; optional small scale when overlay appears */
+.preview-img.overlay-active {
+  transform: scale(0.995);
+  transition: transform 420ms cubic-bezier(.22,.9,.34,1);
+}
