@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
  * The environment will transform this path into a served URL.
  */
 export default function App() {
-  const heroImageUrl = "../src/assets/UI-overian.png";
+  const heroImageUrl = "UI-overian.png";
 
   return (
     <div className="min-h-screen flex flex-col items-center py-8 px-4">

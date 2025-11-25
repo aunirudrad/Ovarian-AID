@@ -152,7 +152,7 @@ export default function ImageClassifier({
                     {/* preview wrapper is relative to host overlay */}
                     <div className="card p-4 preview-wrapper">
                         <div className="mb-3">
-                            <button onClick={openFilePicker} className="btn-primary w-full">Choose Image</button>
+                            <button onClick={openFilePicker} className="mx-auto btn-primary w-full">Choose Image</button>
                         </div>
 
                         <div>
