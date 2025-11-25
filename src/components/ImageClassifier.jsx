@@ -4,6 +4,25 @@ import * as tf from "@tensorflow/tfjs";
 let cachedModel = null;
 let cachedMetadata = null;
 
+// Function to adjust confidence scores based on thresholds
+const adjustConfidenceScore = (probability) => {
+    const confidencePercent = probability * 100;
+    
+    if (confidencePercent < 30) {
+        // Below 30%: multiply by 3.25
+        return Math.min(probability * 3.25, 1.0); // Cap at 100%
+    } else if (confidencePercent >= 30 && confidencePercent < 35) {
+        // Between 30-35%: multiply by 2.5
+        return Math.min(probability * 2.5, 1.0); // Cap at 100%
+    } else if (confidencePercent >= 35 && confidencePercent <= 40) {
+        // Between 35-40%: multiply by 2.25
+        return Math.min(probability * 2.5, 1.0); // Cap at 100%
+    } else {
+        // Above 40%: no adjustment
+        return probability;
+    }
+};
+
 export default function ImageClassifier({
     cloudModelUrl,
     metadataUrl,
@@ -109,6 +128,7 @@ export default function ImageClassifier({
                 indexed.sort((a, b) => b.probability - a.probability);
                 const top = indexed.slice(0, topK).map(it => ({
                     ...it,
+                    probability: adjustConfidenceScore(it.probability), // Apply confidence adjustment
                     label: (cachedMetadata?.labels?.[it.index]) ?? `Class ${it.index}`
                 }));
 
