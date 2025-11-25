@@ -40,8 +40,8 @@ export default function App() {
 
         <main className="card p-6">
           <ImageClassifier
-            cloudModelUrl="https://teachablemachine.withgoogle.com/models/K0H9JrtTe/model.json"
-            metadataUrl="https://teachablemachine.withgoogle.com/models/K0H9JrtTe/metadata.json"
+            cloudModelUrl="https://teachablemachine.withgoogle.com/models/-AeufB8Wz/model.json"
+            metadataUrl="https://teachablemachine.withgoogle.com/models/-AeufB8Wz/metadata.json"
           />
         </main>
 

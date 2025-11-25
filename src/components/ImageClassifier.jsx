@@ -128,8 +128,8 @@ export default function ImageClassifier({
                 indexed.sort((a, b) => b.probability - a.probability);
                 const top = indexed.slice(0, topK).map(it => ({
                     ...it,
-                    probability: adjustConfidenceScore(it.probability), // Apply confidence adjustment
-                    label: (cachedMetadata?.labels?.[it.index]) ?? `Class ${it.index}`
+                    label: (cachedMetadata?.labels?.[it.index]) ?? `Class ${it.index}`,
+                    probability: adjustConfidenceScore(it.probability) // Adjusted confidence score
                 }));
 
                 setPredictions(top);
